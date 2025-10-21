@@ -1,0 +1,59 @@
+integrator              = md
+dt                      = 0.002
+nsteps                  = 125000000
+;
+nstxout                 = 0 ;steps between writing coordinates
+nstvout                 = 0 ;steps between writing velocities
+nstfout                 = 0 ;step between writing forces
+;
+nstxout-compressed      = 500000 ;steps between writing positions coordinates
+nstenergy               = 500000 ;steps between writing energies to energy file
+nstlog                  = 500000 ;steps between writing energies to log file
+;
+compressed-x-precision  = 1000 ;precision to write to compressed trajectory file
+nstcalcenergy           = 1000 ;steps between calculating energies
+;
+cutoff-scheme           = Verlet
+nstlist                 = 20
+rlist                   = 1.2
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw_switch             = 1.0
+rvdw                    = 1.2
+coulombtype             = PME
+rcoulomb                = 1.2
+;
+tcoupl                  = Nose-Hoover
+tc_grps                 = SYSTEM
+tau_t                   = 1.0 
+ref_t                   = 350
+;
+pcoupl                  = parrinello-rahman
+pcoupltype              = semiisotropic
+tau_p                   = 5.0
+compressibility         = 4.5e-5 4.5e-5
+ref_p                   = 1.0 1.0
+refcoord_scaling        = com
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+continuation            = yes
+; CompEL
+swapcoords              = Z        ; Swap positions: no, X, Y, Z
+swap-frequency          = 100      ; Swap attempt frequency
+split-group0            = MEMB1    ; Defines compartment boundary
+split-group1            = MEMB2    ; Defines other compartment boundary
+massw-split0            = no       ; use mass-weighted center?
+massw-split1            = no
+;
+solvent-group           = TIP3     ; Group containing the solvent molecules
+iontypes                = 2        ; Number of different ion types to control
+iontype0-name           = POT      ; Group name of the ion type
+iontype0-in-A           = 31       ; Reference count of ions of type 0 in A
+iontype0-in-B           = 25       ; Reference count of ions of type 0 in B
+iontype1-name           = CLA
+iontype1-in-A           = 25
+iontype1-in-B           = 31
+;
+coupl-steps             = 10       ; Average over these many swap steps
+threshold               = 1        ; Do not swap if < threshold
