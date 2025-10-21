@@ -1,2 +1,2 @@
 # CPPs_CompEL
-This repo contains files for the CPP Computational Electrophysiology study
+In this repository you will find the analysis and files used in the Computational Electrophysiology CPPs study by Catalina-Hernandez et al.
